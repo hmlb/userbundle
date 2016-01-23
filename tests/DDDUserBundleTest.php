@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @author Hugues Maignol <hugues@hmlb.fr>
  */
-class UserBundleTest extends PHPUnit_Framework_TestCase
+class DDDUserBundleTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var ContainerInterface

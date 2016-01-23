@@ -5,13 +5,16 @@ namespace HMLB\UserBundle\Tests\Functional;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use HMLB\DDDBundle\HMLBDDDBundle;
 use HMLB\UserBundle\HMLBUserBundle;
+use Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle;
 use SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle;
 use SimpleBus\SymfonyBridge\SimpleBusEventBusBundle;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\MonologBundle\MonologBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
+
 /**
  * TestKernel.
  *
@@ -39,8 +42,10 @@ class TestKernel extends Kernel
     public function registerBundles()
     {
         return [
+            new FrameworkBundle(),
             new DoctrineBundle(),
             new SecurityBundle(),
+            new LexikJWTAuthenticationBundle(),
             new SimpleBusCommandBusBundle(),
             new SimpleBusEventBusBundle(),
             new MonologBundle(),
