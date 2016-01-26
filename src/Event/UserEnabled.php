@@ -7,7 +7,7 @@ use HMLB\DDD\Entity\Identity;
 /**
  * UserEnabled.
  *
- * @author Hugues Maignol <hugues.maignol@kitpages.fr>
+ * @author Hugues Maignol <hugues@hmlb.fr>
  */
 class UserEnabled extends UserEvent
 {

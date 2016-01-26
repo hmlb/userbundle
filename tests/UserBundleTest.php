@@ -2,6 +2,7 @@
 
 namespace HMLB\UserBundle\Tests;
 
+use Doctrine\ORM\EntityManager;
 use HMLB\UserBundle\Tests\Functional\TestKernel;
 use HMLB\UserBundle\User\User;
 use PHPUnit_Framework_TestCase;
@@ -9,11 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Test;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * DDDBundleTest.
+ * UserBundleTest.
  *
  * @author Hugues Maignol <hugues@hmlb.fr>
  */
-class DDDUserBundleTest extends PHPUnit_Framework_TestCase
+class UserBundleTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var ContainerInterface
@@ -26,6 +27,16 @@ class DDDUserBundleTest extends PHPUnit_Framework_TestCase
         $kernel->boot();
 
         $this->container = $kernel->getContainer();
+    }
+
+    /**
+     * @test
+     */
+    public function mappingsAreLoaded()
+    {
+        $doctrine = $this->container->get('doctrine');
+        $em = $doctrine->getManager();
+        $this->assertInstanceOf(EntityManager::class, $em);
     }
 
     /**

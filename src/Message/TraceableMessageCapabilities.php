@@ -2,7 +2,8 @@
 
 namespace HMLB\UserBundle\Message;
 
-use HMLB\UserBundle\User\User;
+use HMLB\UserBundle\Exception\MissingTraceException;
+use HMLB\UserBundle\Message\Trace\Trace;
 
 /**
  * @author Hugues Maignol <hugues@hmlb.fr>
@@ -10,27 +11,29 @@ use HMLB\UserBundle\User\User;
 trait TraceableMessageCapabilities
 {
     /**
-     * The user responsible for the dispatching of a message.
-     *
-     * @var User
+     * @var Trace
      */
-    private $_initiator;
+    private $messageTrace;
 
     /**
-     * @param User $user
-     *
-     * @return self
+     * {@inheritdoc}
      */
-    public function hasBeenInitiatedBy(User $user)
+    public function trace(Trace $trace)
     {
-        $this->_initiator = $user;
+        $this->messageTrace = $trace;
     }
 
     /**
-     * @return User
+     * @return Trace
+     *
+     * @throws MissingTraceException If the message have not been Traced Yet.
      */
-    public function getMessageInitiator()
+    public function getTrace(): Trace
     {
-        return $this->_initiator;
+        if (null === $this->messageTrace) {
+            throw new MissingTraceException();
+        }
+
+        return $this->messageTrace;
     }
 }

@@ -2,19 +2,16 @@
 
 namespace HMLB\UserBundle\Command;
 
-use HMLB\DDD\Message\Command\Command;
-use HMLB\DDDBundle\Persistence\PersistentMessage;
-use HMLB\DDDBundle\Persistence\PersistentMessageCapabilities;
+use HMLB\DDD\Message\Command\PersistentCommand;
 use HMLB\UserBundle\Message\TraceableMessage;
 use HMLB\UserBundle\Message\TraceableMessageCapabilities;
 
 /**
  * UserCommand.
  *
- * @author Hugues Maignol <hugues.maignol@kitpages.fr>
+ * @author Hugues Maignol <hugues@hmlb.fr>
  */
-class UserCommand extends Command implements PersistentMessage, TraceableMessage
+class UserCommand extends PersistentCommand implements TraceableMessage
 {
-    use PersistentMessageCapabilities;
     use TraceableMessageCapabilities;
 }

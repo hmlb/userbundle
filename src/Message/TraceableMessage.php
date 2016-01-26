@@ -2,7 +2,8 @@
 
 namespace HMLB\UserBundle\Message;
 
-use HMLB\UserBundle\User\User;
+use HMLB\UserBundle\Exception\MissingTraceException;
+use HMLB\UserBundle\Message\Trace\Trace;
 
 /**
  * Initiator of this kind of message is traceable.
@@ -12,14 +13,16 @@ use HMLB\UserBundle\User\User;
 interface TraceableMessage
 {
     /**
-     * @param User $user
+     * Add Trace metadata to the message.
      *
-     * @return self
+     * @param Trace $trace
      */
-    public function hasBeenInitiatedBy(User $user);
+    public function trace(Trace $trace);
 
     /**
-     * @return User
+     * @return Trace
+     *
+     * @throws MissingTraceException If the message have not been Traced Yet.
      */
-    public function getMessageInitiator();
+    public function getTrace(): Trace;
 }
